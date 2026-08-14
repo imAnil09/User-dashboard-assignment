@@ -3,6 +3,7 @@ const Button = ({
     children,
     onClick,
     variant = "primary",
+    className = "",
 }) => {
     const buttonStyles =
         variant === "secondary"
@@ -13,7 +14,7 @@ const Button = ({
         <button
             type={type}
             onClick={onClick}
-            className={`rounded-md px-4 py-2 font-medium text-white cursor-pointer ${buttonStyles}`}
+            className={`rounded-md px-4 py-2 font-medium text-white cursor-pointer ${buttonStyles} ${className}`}
         >
             {children}
         </button>

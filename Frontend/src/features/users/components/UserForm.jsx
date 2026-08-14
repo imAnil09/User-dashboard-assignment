@@ -59,7 +59,7 @@ const UserForm = ({ onSubmit }) => {
                 />
 
                 <Button type="submit">
-                    Create User
+                    Save
                 </Button>
 
                 <Button

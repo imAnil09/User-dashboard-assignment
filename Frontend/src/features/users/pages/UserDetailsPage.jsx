@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import Button from "../../../shared/components/Button";
 
 const UserDetailsPage = () => {
     const navigate = useNavigate();
@@ -115,13 +116,14 @@ const UserDetailsPage = () => {
                         </div>
                     </div>
                     <div className="mt-6 border-t border-gray-200 pt-6">
-                        <button
+                        <Button
                             type="button"
+                            variant="secondary"
+                            className="mt-4 w-full"
                             onClick={() => navigate(-1)}
-                            className="mt-4 w-full rounded-md bg-gray-600 px-4 py-2 font-medium text-white cursor-pointer"
                         >
                             Back
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

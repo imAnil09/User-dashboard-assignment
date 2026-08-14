@@ -5,6 +5,7 @@ import { ROUTES } from "../../../app/constants/routes";
 import UserList from "../components/UserList";
 import UserSearch from "../components/UserSearch";
 import useUsers from "../hooks/useUsers";
+import Button from "../../../shared/components/Button";
 
 const UsersDashboardPage = () => {
     const navigate = useNavigate();
@@ -45,13 +46,13 @@ const UsersDashboardPage = () => {
                         />
                     </div>
 
-                    <button
+                    <Button
                         type="button"
                         onClick={() => navigate(ROUTES.CREATE_USER)}
-                        className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 sm:w-auto cursor-pointer"
+                        className="w-full text-sm sm:w-auto"
                     >
                         Create New User
-                    </button>
+                    </Button>
                 </div>
 
                 <UserList
