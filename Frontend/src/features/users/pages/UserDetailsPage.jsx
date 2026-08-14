@@ -47,7 +47,7 @@ const UserDetailsPage = () => {
 
                         <div>
                             <p className="text-sm text-gray-500">Website</p>
-                            <p className="text-gray-900">{user.website}</p>
+                            <p className="text-gray-900">{user.website || "Not available"}</p>
                         </div>
                     </div>
 
@@ -60,21 +60,21 @@ const UserDetailsPage = () => {
                             <div>
                                 <p className="text-sm text-gray-500">Street</p>
                                 <p className="text-gray-900">
-                                    {user.address.street}
+                                    {user.address?.street || "Not available"}
                                 </p>
                             </div>
 
                             <div>
                                 <p className="text-sm text-gray-500">Suite</p>
                                 <p className="text-gray-900">
-                                    {user.address.suite}
+                                    {user.address?.suite || "Not available"}
                                 </p>
                             </div>
 
                             <div>
                                 <p className="text-sm text-gray-500">City</p>
                                 <p className="text-gray-900">
-                                    {user.address.city}
+                                    {user.address?.city || "Not available"}
                                 </p>
                             </div>
 
@@ -83,7 +83,7 @@ const UserDetailsPage = () => {
                                     Zipcode
                                 </p>
                                 <p className="text-gray-900">
-                                    {user.address.zipcode}
+                                    {user.address?.zipcode || "Not available"}
                                 </p>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ const UserDetailsPage = () => {
                                     Latitude
                                 </p>
                                 <p className="text-gray-900">
-                                    {user.address.geo.lat}
+                                    {user.address?.geo?.lat || "Not available"}
                                 </p>
                             </div>
 
@@ -109,7 +109,7 @@ const UserDetailsPage = () => {
                                     Longitude
                                 </p>
                                 <p className="text-gray-900">
-                                    {user.address.geo.lng}
+                                    {user.address?.geo?.lng || "Not available"}
                                 </p>
                             </div>
                         </div>
