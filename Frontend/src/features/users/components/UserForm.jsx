@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import Input from "../../../shared/components/Input";
+import Button from "../../../shared/components/Button";
 
 const UserForm = ({ onSubmit }) => {
 
@@ -28,51 +30,45 @@ const UserForm = ({ onSubmit }) => {
             className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"
         >
             <div className="grid gap-4">
-                <input
+                <Input
                     name="name"
                     type="text"
                     placeholder="Name"
                     required
-                    className="rounded-md border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
                 />
 
-                <input
+                <Input
                     name="email"
                     type="email"
                     placeholder="Email"
                     required
-                    className="rounded-md border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
                 />
 
-                <input
+                <Input
                     name="phone"
                     type="text"
                     placeholder="Phone"
                     required
-                    className="rounded-md border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
                 />
 
-                <input
+                <Input
                     name="company"
                     type="text"
                     placeholder="Company"
                     required
-                    className="rounded-md border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
                 />
 
-                <button
-                    type="submit"
-                    className="rounded-md bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 cursor-pointer"
-                >
+                <Button type="submit">
                     Create User
-                </button>
-                <button
+                </Button>
+
+                <Button
                     type="button"
-                    className="rounded-md bg-gray-600 px-4 py-2 font-medium text-white cursor-pointer"
+                    variant="secondary"
                     onClick={() => navigate(-1)}
                 >
                     Back
-                </button>
+                </Button>
             </div>
         </form>
     );
