@@ -5,10 +5,7 @@ import {
 } from "react-router-dom";
 
 import { ROUTES } from "../constants/routes";
-import {
-    UserDetailsPage,
-    UsersDashboardPage,
-} from "../../features/users";
+import { CreateUserPage, UserDetailsPage, UsersDashboardPage } from "../../features/users";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +15,10 @@ const router = createBrowserRouter([
     {
         path: ROUTES.USERS,
         element: <UsersDashboardPage />,
+    },
+    {
+        path: ROUTES.CREATE_USER,
+        element: <CreateUserPage />,
     },
     {
         path: ROUTES.USER_DETAILS,

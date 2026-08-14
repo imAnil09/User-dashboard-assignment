@@ -1,8 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { ROUTES } from "../../../app/constants/routes";
+import UserList from "../components/UserList";
+import UserSearch from "../components/UserSearch";
 import useUsers from "../hooks/useUsers";
 
 const UsersDashboardPage = () => {
+    const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState("");
+
     const { users, status, error, fetchUsers } = useUsers();
 
     useEffect(() => {
@@ -11,11 +18,47 @@ const UsersDashboardPage = () => {
         }
     }, [status, fetchUsers]);
 
+    const filteredUsers = users.filter((user) =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    if (status === "loading") {
+        return <div>Loading users...</div>;
+    }
+
+    if (status === "failed") {
+        return <div>{error}</div>;
+    }
+
     return (
-        <div>
-            <h1>Users: {users.length}</h1>
-            <p>Status: {status}</p>
-            {error && <p>{error}</p>}
+        <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
+            <div className="mx-auto max-w-7xl">
+                <h1 className="mb-6 text-2xl font-semibold text-gray-900">
+                    User Dashboard
+                </h1>
+
+                <div className="mb-6 flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div className="w-full sm:max-w-md">
+                        <UserSearch
+                            value={searchQuery}
+                            onChange={setSearchQuery}
+                        />
+                    </div>
+
+                    <button
+                        type="button"
+                        onClick={() => navigate(ROUTES.CREATE_USER)}
+                        className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 sm:w-auto cursor-pointer"
+                    >
+                        Create New User
+                    </button>
+                </div>
+
+                <UserList
+                    users={filteredUsers}
+                    onUserClick={(userId) => navigate(`/users/${userId}`)}
+                />
+            </div>
         </div>
     );
 };

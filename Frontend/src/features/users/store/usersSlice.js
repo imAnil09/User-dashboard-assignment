@@ -36,7 +36,12 @@ const usersSlice = createSlice({
 
         builder.addCase(fetchUsersAsync.fulfilled, (state, action) => {
             state.status = "succeeded";
-            state.users = action.payload;
+
+            const localUsers = state.users.filter(
+                (user) => !action.payload.some((apiUser) => apiUser.id === user.id)
+            );
+
+            state.users = [...action.payload, ...localUsers];
         });
 
         builder.addCase(fetchUsersAsync.rejected, (state, action) => {
