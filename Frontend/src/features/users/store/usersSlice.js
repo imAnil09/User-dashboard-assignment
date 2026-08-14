@@ -14,8 +14,10 @@ export const fetchUsersAsync = createAsyncThunk(
     }
 );
 
+const storedUsers = JSON.parse(localStorage.getItem("users"));
+
 const initialState = {
-    users: [],
+    users: storedUsers || [],
     status: "idle",
     error: null,
 };
@@ -26,6 +28,7 @@ const usersSlice = createSlice({
     reducers: {
         addUser: (state, action) => {
             state.users.push(action.payload);
+            localStorage.setItem("users", JSON.stringify(state.users));
         },
     },
     extraReducers: (builder) => {
@@ -38,10 +41,15 @@ const usersSlice = createSlice({
             state.status = "succeeded";
 
             const localUsers = state.users.filter(
-                (user) => !action.payload.some((apiUser) => apiUser.id === user.id)
+                (user) =>
+                    !action.payload.some(
+                        (apiUser) => apiUser.id === user.id
+                    )
             );
 
             state.users = [...action.payload, ...localUsers];
+
+            localStorage.setItem("users", JSON.stringify(state.users));
         });
 
         builder.addCase(fetchUsersAsync.rejected, (state, action) => {
