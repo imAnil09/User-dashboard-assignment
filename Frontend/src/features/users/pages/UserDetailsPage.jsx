@@ -11,13 +11,7 @@ const UserDetailsPage = () => {
     );
 
     if (!user) {
-        return (
-            <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
-                <p className="text-center text-gray-600">
-                    User not found.
-                </p>
-            </div>
-        );
+        return <Message>User not found.</Message>;
     }
 
     return (

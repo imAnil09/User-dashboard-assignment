@@ -4,6 +4,7 @@ import Button from "../../../shared/components/Button";
 import UserList from "../components/UserList";
 import UserSearch from "../components/UserSearch";
 import useUsers from "../hooks/useUsers";
+import Message from "../../../shared/components/Message";
 
 const UsersDashboardPage = () => {
     const {
@@ -24,21 +25,11 @@ const UsersDashboardPage = () => {
     }, [status, fetchUsers]);
 
     if (status === "loading") {
-        return (
-            <div className="flex min-h-screen items-center justify-center bg-gray-50">
-                <p className="text-gray-600">Loading users...</p>
-            </div>
-        );
+        return <Message>Loading users...</Message>;
     }
 
     if (status === "failed") {
-        return (
-            <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
-                <p className="text-center text-red-600">
-                    {error}
-                </p>
-            </div>
-        );
+        return <Message>{error}</Message>;
     }
 
     return (
