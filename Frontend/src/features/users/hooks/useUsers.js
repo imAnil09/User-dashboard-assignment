@@ -1,6 +1,8 @@
-import { useCallback } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import { ROUTES } from "../../../app/constants/routes";
 import {
     addUser,
     fetchUsersAsync,
@@ -8,6 +10,9 @@ import {
 
 const useUsers = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [searchQuery, setSearchQuery] = useState("");
 
     const { users, status, error } = useSelector(
         (state) => state.users
@@ -24,12 +29,38 @@ const useUsers = () => {
         [dispatch]
     );
 
+    const handleCreateUser = useCallback(() => {
+        navigate(ROUTES.CREATE_USER);
+    }, [navigate]);
+
+    const handleUserClick = useCallback(
+        (userId) => {
+            navigate(`/users/${userId}`);
+        },
+        [navigate]
+    );
+
+    const handleSearch = useCallback((value) => {
+        setSearchQuery(value);
+    }, []);
+
+    const filteredUsers = useMemo(() => {
+        return users.filter((user) =>
+            user.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }, [users, searchQuery]);
+
     return {
         users,
+        filteredUsers,
+        searchQuery,
         status,
         error,
         fetchUsers,
         createUser,
+        handleCreateUser,
+        handleUserClick,
+        handleSearch,
     };
 };
 

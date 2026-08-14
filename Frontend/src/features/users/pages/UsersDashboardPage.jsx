@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-import { ROUTES } from "../../../app/constants/routes";
+import Button from "../../../shared/components/Button";
 import UserList from "../components/UserList";
 import UserSearch from "../components/UserSearch";
 import useUsers from "../hooks/useUsers";
-import Button from "../../../shared/components/Button";
 
 const UsersDashboardPage = () => {
-    const navigate = useNavigate();
-    const [searchQuery, setSearchQuery] = useState("");
-
-    const { users, status, error, fetchUsers } = useUsers();
+    const {
+        filteredUsers,
+        searchQuery,
+        status,
+        error,
+        fetchUsers,
+        handleCreateUser,
+        handleUserClick,
+        handleSearch,
+    } = useUsers();
 
     useEffect(() => {
         if (status === "idle") {
@@ -19,16 +23,22 @@ const UsersDashboardPage = () => {
         }
     }, [status, fetchUsers]);
 
-    const filteredUsers = users.filter((user) =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
     if (status === "loading") {
-        return <div>Loading users...</div>;
+        return (
+            <div className="flex min-h-screen items-center justify-center bg-gray-50">
+                <p className="text-gray-600">Loading users...</p>
+            </div>
+        );
     }
 
     if (status === "failed") {
-        return <div>{error}</div>;
+        return (
+            <div className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
+                <p className="text-center text-red-600">
+                    {error}
+                </p>
+            </div>
+        );
     }
 
     return (
@@ -42,13 +52,13 @@ const UsersDashboardPage = () => {
                     <div className="w-full sm:max-w-md">
                         <UserSearch
                             value={searchQuery}
-                            onChange={setSearchQuery}
+                            onChange={handleSearch}
                         />
                     </div>
 
                     <Button
                         type="button"
-                        onClick={() => navigate(ROUTES.CREATE_USER)}
+                        onClick={handleCreateUser}
                         className="w-full text-sm sm:w-auto"
                     >
                         Create New User
@@ -57,7 +67,7 @@ const UsersDashboardPage = () => {
 
                 <UserList
                     users={filteredUsers}
-                    onUserClick={(userId) => navigate(`/users/${userId}`)}
+                    onUserClick={handleUserClick}
                 />
             </div>
         </div>
