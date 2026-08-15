@@ -438,16 +438,16 @@ Loading, error, and not-found messages are displayed using the shared `Message` 
 
 ### Users Dashboard
 
-![Users Dashboard Page](image.png)
+![Users Dashboard Page](src/assets/images/user-dashboard.png)
 
 ### Create New User
 
 
-![Create New User Form](image-3.png)
+![Create New User Form](src/assets/images/create-new-user.png)
 
 ### User Details
 
-![User Details Page](image-2.png)
+![User Details Page](src/assets/images/user-details.png)
 
 ## Development Notes
 
