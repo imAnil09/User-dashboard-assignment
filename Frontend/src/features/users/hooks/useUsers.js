@@ -7,12 +7,14 @@ import {
     addUser,
     fetchUsersAsync,
 } from "../store/usersSlice";
+import useDebounce from "../../../shared/hooks/useDebounce";
 
 const useUsers = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [searchQuery, setSearchQuery] = useState("");
+    const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
     const { users, status, error } = useSelector(
         (state) => state.users
@@ -46,9 +48,11 @@ const useUsers = () => {
 
     const filteredUsers = useMemo(() => {
         return users.filter((user) =>
-            user.name.toLowerCase().includes(searchQuery.toLowerCase())
+            user.name
+                .toLowerCase()
+                .includes(debouncedSearchQuery.toLowerCase())
         );
-    }, [users, searchQuery]);
+    }, [users, debouncedSearchQuery]);
 
     return {
         users,
