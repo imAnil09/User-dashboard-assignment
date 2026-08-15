@@ -442,7 +442,8 @@ Loading, error, and not-found messages are displayed using the shared `Message` 
 
 ### Create New User
 
-![Create New User Form](image-1.png)
+
+![Create New User Form](image-3.png)
 
 ### User Details
 
