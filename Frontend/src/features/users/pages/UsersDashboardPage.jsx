@@ -56,10 +56,14 @@ const UsersDashboardPage = () => {
                     </Button>
                 </div>
 
-                <UserList
-                    users={filteredUsers}
-                    onUserClick={handleUserClick}
-                />
+                {filteredUsers.length === 0 ? (
+                    <Message>No users found.</Message>
+                ) : (
+                    <UserList
+                        users={filteredUsers}
+                        onUserClick={handleUserClick}
+                    />
+                )}
             </div>
         </div>
     );
