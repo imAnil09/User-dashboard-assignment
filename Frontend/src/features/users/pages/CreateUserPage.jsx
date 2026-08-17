@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import UserForm from "../components/UserForm";
-import useUsers from "../hooks/useUsers";
+import UserForm from "@features/users/components/UserForm";
+import useUsers from "@features/users/hooks/useUsers";
 
 const CreateUserPage = () => {
     const navigate = useNavigate();

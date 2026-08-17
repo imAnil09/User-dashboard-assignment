@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
-import Button from "../../../shared/components/Button";
-import UserList from "../components/UserList";
-import UserSearch from "../components/UserSearch";
-import useUsers from "../hooks/useUsers";
-import Message from "../../../shared/components/Message";
+import Button from "@shared/components/Button";
+import UserList from "@features/users/components/UserList";
+import UserSearch from "@features/users/components/UserSearch";
+import useUsers from "@features/users/hooks/useUsers";
+import Message from "@shared/components/Message";
 
 const UsersDashboardPage = () => {
     const {

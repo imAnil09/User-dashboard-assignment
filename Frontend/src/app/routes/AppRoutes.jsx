@@ -4,8 +4,8 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import { ROUTES } from "../constants/routes";
-import { CreateUserPage, UserDetailsPage, UsersDashboardPage } from "../../features/users";
+import { ROUTES } from "@app/constants/routes";
+import { CreateUserPage, UserDetailsPage, UsersDashboardPage } from "@features/users";
 
 const router = createBrowserRouter([
     {

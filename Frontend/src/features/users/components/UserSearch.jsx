@@ -1,6 +1,8 @@
+import Input from "@shared/components/Input";
+
 const UserSearch = ({ value, onChange }) => {
     return (
-        <input
+        <Input
             type="text"
             value={value}
             onChange={(event) => onChange(event.target.value)}

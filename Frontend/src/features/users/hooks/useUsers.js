@@ -2,12 +2,12 @@ import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { ROUTES } from "../../../app/constants/routes";
+import { ROUTES } from "@app/constants/routes";
 import {
     addUser,
     fetchUsersAsync,
-} from "../store/usersSlice";
-import useDebounce from "../../../shared/hooks/useDebounce";
+} from "@features/users/store/usersSlice";
+import useDebounce from "@shared/hooks/useDebounce";
 
 const useUsers = () => {
     const dispatch = useDispatch();
