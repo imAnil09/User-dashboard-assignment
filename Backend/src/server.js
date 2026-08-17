@@ -4,6 +4,7 @@ import cors from "cors";
 
 import connectDatabase from "./config/database.js";
 import userRoutes from "./routes/user.routes.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 const app = express();
 const PORT = 3000;
@@ -13,9 +14,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 
-app.get("/", (req, res) => {
-    res.send("User Management API is Running");
-})
+app.use(errorHandler);
 
 const startServer = async () => {
     await connectDatabase();
