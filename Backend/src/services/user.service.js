@@ -8,7 +8,12 @@ const getUserById = async (userId) => {
     return User.findById(userId);
 };
 
+const createUser = async (userData) => {
+    return User.create(userData);
+};
+
 export default {
     getUsers,
     getUserById,
+    createUser,
 };
